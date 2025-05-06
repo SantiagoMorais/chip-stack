@@ -22,11 +22,15 @@ export class InMemoryPlayersRepository implements PlayersRepository {
       tableToken,
     });
 
+    const isOwner =
+      !table.players || !table.players.find((player) => player.isOwner);
+
     const player = new Player({
       props: {
         name,
         table,
         tableToken: table.token,
+        isOwner,
       },
     });
 
