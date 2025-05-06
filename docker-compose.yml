@@ -1,0 +1,16 @@
+name: chipstack
+
+services:
+  chipstack:
+    image: bitnami/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U docker -d pokertable"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=chipstack

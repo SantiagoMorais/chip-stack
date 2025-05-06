@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+  output = "../src/generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Table {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  tableName String
+  isLocked  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  ownerId   String?  @unique
+
+  players Player[]
+
+  @@map("tables")
+}
+
+model Player {
+  id      String  @id @default(cuid())
+  name    String
+  isOwner Boolean @default(false)
+  chips   Int     @default(500)
+
+  tableId String
+  table   Table? @relation(fields: [tableId], references: [id])
+
+  @@map("players")
+}
