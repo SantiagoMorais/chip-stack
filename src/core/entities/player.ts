@@ -31,7 +31,7 @@ export class Player {
   }
 
   get chips() {
-    return this.props.chips;
+    return this.props.chips!;
   }
 
   set chips(value: number) {

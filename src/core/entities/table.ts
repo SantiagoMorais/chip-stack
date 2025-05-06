@@ -11,7 +11,7 @@ export class Table {
     this.props = {
       createdAt: props.createdAt ?? new Date(),
       isLocked: props.isLocked ?? false,
-      ownerId: props.ownerId,
+      ownerId: props.ownerId ?? null,
       players: props.players ?? [],
       tableName: props.tableName,
       token: this.generateToken(),
