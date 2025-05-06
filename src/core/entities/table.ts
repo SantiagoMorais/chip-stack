@@ -49,4 +49,9 @@ export class Table {
   get createdAt() {
     return this.props.createdAt;
   }
+
+  public getProps(): ITableProps {
+    const { token, ...rest } = this.props;
+    return rest;
+  }
 }
