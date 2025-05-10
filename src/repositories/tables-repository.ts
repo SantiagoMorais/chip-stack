@@ -2,7 +2,7 @@ import { Table } from "@/core/entities/table";
 import { ITableProps } from "@/core/interfaces/table-props";
 
 export interface TablesRepository {
-  create({ tableName }: { tableName: string }): Promise<{ table: Table }>;
+  create({ table }: { table: Table }): Promise<{ table: Table }>;
   findUniqueByToken({
     tableToken,
   }: {

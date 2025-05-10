@@ -7,13 +7,7 @@ import { TablesRepository } from "../tables-repository";
 export class InMemoryTablesRepository implements TablesRepository {
   private tables: Table[] = [];
 
-  async create({
-    tableName,
-  }: {
-    tableName: string;
-  }): Promise<{ table: Table }> {
-    const table = new Table({ props: { tableName } });
-
+  async create({ table }: { table: Table }): Promise<{ table: Table }> {
     this.tables.push(table);
 
     return { table };
