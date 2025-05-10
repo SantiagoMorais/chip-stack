@@ -18,7 +18,7 @@ describe("CreateTableUseCase", () => {
     sut = new CreateTableUseCase(tableRepository, playersRepository);
   });
 
-  it("should create a table and an owner", async () => {
+  it("should be able to create a table and an owner", async () => {
     const { table } = await sut.execute({
       ownerName: "John Doe",
       tableName: "Typescript Poker",
