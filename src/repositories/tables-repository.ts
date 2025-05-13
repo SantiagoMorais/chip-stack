@@ -1,4 +1,4 @@
-import { Table } from "@/core/entities/table";
+import { Table } from "@/domain/entities/table";
 import { ITableProps } from "@/core/interfaces/table-props";
 
 export interface TablesRepository {

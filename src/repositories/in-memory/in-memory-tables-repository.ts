@@ -1,4 +1,4 @@
-import { Table } from "@/core/entities/table";
+import { Table } from "@/domain/entities/table";
 import { ResourceNotFoundError } from "@/core/errors/resource-not-found-error";
 import { ITableProps } from "@/core/interfaces/table-props";
 

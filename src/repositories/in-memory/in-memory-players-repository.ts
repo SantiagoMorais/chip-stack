@@ -1,4 +1,4 @@
-import { Player } from "@/core/entities/player";
+import { Player } from "@/domain/entities/player";
 
 import { PlayersRepository } from "../players-repository";
 import { TablesRepository } from "../tables-repository";

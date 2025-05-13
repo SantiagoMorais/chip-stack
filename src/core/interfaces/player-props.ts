@@ -1,7 +1,8 @@
-import { Table } from "../entities/table";
+import { Table } from "../../domain/entities/table";
+import { UniqueEntityId } from "../entities/unique-entity-id";
 
 export interface IPlayerProps {
-  id: string;
+  id: UniqueEntityId;
   name: string;
   isOwner: boolean;
   chips: number;
