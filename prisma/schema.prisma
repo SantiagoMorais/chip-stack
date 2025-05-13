@@ -9,12 +9,13 @@ datasource db {
 }
 
 model Table {
-  id        String   @id @default(cuid())
-  token     String   @unique
+  id        String    @id @default(cuid())
+  token     String    @unique
   tableName String
-  isLocked  Boolean  @default(false)
-  createdAt DateTime @default(now())
-  ownerId   String?  @unique
+  isLocked  Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @default(now())
+  ownerId   String?   @unique
 
   players Player[]
 
@@ -22,10 +23,12 @@ model Table {
 }
 
 model Player {
-  id      String  @id @default(cuid())
-  name    String
-  isOwner Boolean @default(false)
-  chips   Int     @default(500)
+  id        String    @id @default(cuid())
+  name      String
+  isOwner   Boolean   @default(false)
+  chips     Int       @default(500)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @default(now())
 
   tableToken String
   table      Table? @relation(fields: [tableToken], references: [token])
