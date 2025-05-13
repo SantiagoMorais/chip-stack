@@ -2,8 +2,7 @@ import { ResourceNotFoundError } from "@/core/errors/resource-not-found-error";
 import { Player } from "@/domain/entities/player";
 import { Table } from "@/domain/entities/table";
 import { Token } from "@/domain/entities/value-objects/token";
-
-import { TablesRepository } from "../tables-repository";
+import { TablesRepository } from "@/repositories/tables-repository";
 
 export class InMemoryTablesRepository implements TablesRepository {
   private tables: Table[] = [];
