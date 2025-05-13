@@ -1,6 +1,7 @@
 import { randomUUID } from "crypto";
 
 import { ITableProps } from "../interfaces/table-props";
+import { Player } from "./player";
 
 export class Table {
   private _id: string;
@@ -50,8 +51,27 @@ export class Table {
     return this.props.createdAt;
   }
 
-  public getProps(): ITableProps {
-    const { token, ...rest } = this.props;
-    return rest;
+  private touch() {
+    this.props.updatedAt = new Date();
+  }
+
+  set players(players: Player[] | undefined) {
+    this.players = players;
+    this.touch();
+  }
+
+  set isLocked(lock: boolean) {
+    this.isLocked = lock;
+    this.touch();
+  }
+
+  set ownerId(id: string | undefined | null) {
+    this.ownerId = id;
+    this.touch();
+  }
+
+  set tableName(newName: string) {
+    this.tableName = newName;
+    this.touch();
   }
 }
