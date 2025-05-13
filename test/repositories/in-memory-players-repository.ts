@@ -1,5 +1,5 @@
-import { Player } from "@/domain/entities/player";
-import { PlayersRepository } from "@/repositories/players-repository";
+import { PlayersRepository } from "@/domain/application/repositories/players-repository";
+import { Player } from "@/domain/enterprise/entities/player";
 
 export class InMemoryPlayersRepository implements PlayersRepository {
   private players: Player[] = [];

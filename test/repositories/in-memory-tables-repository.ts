@@ -1,8 +1,8 @@
 import { ResourceNotFoundError } from "@/core/errors/resource-not-found-error";
-import { Player } from "@/domain/entities/player";
-import { Table } from "@/domain/entities/table";
-import { Token } from "@/domain/entities/value-objects/token";
-import { TablesRepository } from "@/repositories/tables-repository";
+import { TablesRepository } from "@/domain/application/repositories/tables-repository";
+import { Player } from "@/domain/enterprise/entities/player";
+import { Table } from "@/domain/enterprise/entities/table";
+import { Token } from "@/domain/enterprise/entities/value-objects/token";
 
 export class InMemoryTablesRepository implements TablesRepository {
   private tables: Table[] = [];

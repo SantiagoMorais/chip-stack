@@ -1,7 +1,7 @@
-import { Player } from "@/domain/entities/player";
-import { Table } from "@/domain/entities/table";
-import { PlayersRepository } from "@/repositories/players-repository";
-import { TablesRepository } from "@/repositories/tables-repository";
+import { PlayersRepository } from "@/domain/application/repositories/players-repository";
+import { TablesRepository } from "@/domain/application/repositories/tables-repository";
+import { Player } from "@/domain/enterprise/entities/player";
+import { Table } from "@/domain/enterprise/entities/table";
 
 export class CreateTableUseCase {
   private tablesRepository: TablesRepository;

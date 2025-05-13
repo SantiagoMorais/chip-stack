@@ -1,8 +1,8 @@
 import { Entity } from "@/core/entities/entity";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { ITableProps } from "@/core/interfaces/table-props";
 import { Optional } from "@/core/types/optional";
 
-import { ITableProps } from "../../core/interfaces/table-props";
 import { Player } from "./player";
 import { Token } from "./value-objects/token";
 

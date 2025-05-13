@@ -1,7 +1,8 @@
-import { InMemoryPlayersRepository } from "@/repositories/in-memory/in-memory-players-repository";
-import { InMemoryTablesRepository } from "@/repositories/in-memory/in-memory-tables-repository";
-import { PlayersRepository } from "@/repositories/players-repository";
-import { TablesRepository } from "@/repositories/tables-repository";
+import { InMemoryPlayersRepository } from "test/repositories/in-memory-players-repository";
+import { InMemoryTablesRepository } from "test/repositories/in-memory-tables-repository";
+
+import { PlayersRepository } from "@/domain/application/repositories/players-repository";
+import { TablesRepository } from "@/domain/application/repositories/tables-repository";
 
 import { CreateTableUseCase } from "./create-table-use-case";
 

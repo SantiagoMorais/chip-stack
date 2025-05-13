@@ -1,8 +1,7 @@
 import { Entity } from "@/core/entities/entity";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { IPlayerProps } from "@/core/interfaces/player-props";
 import { Optional } from "@/core/types/optional";
-
-import { IPlayerProps } from "../../core/interfaces/player-props";
 
 export class Player extends Entity<IPlayerProps> {
   get tableToken() {
