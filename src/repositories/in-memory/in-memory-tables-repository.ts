@@ -1,6 +1,7 @@
-import { Table } from "@/domain/entities/table";
 import { ResourceNotFoundError } from "@/core/errors/resource-not-found-error";
-import { ITableProps } from "@/core/interfaces/table-props";
+import { Player } from "@/domain/entities/player";
+import { Table } from "@/domain/entities/table";
+import { Token } from "@/domain/entities/value-objects/token";
 
 import { TablesRepository } from "../tables-repository";
 
@@ -9,53 +10,37 @@ export class InMemoryTablesRepository implements TablesRepository {
 
   async create({ table }: { table: Table }): Promise<{ table: Table }> {
     this.tables.push(table);
-
     return { table };
+  }
+
+  async findUniqueByToken({
+    tableToken,
+  }: {
+    tableToken: Token;
+  }): Promise<{ table: Table }> {
+    const table = this.tables.find((table) => table.token === tableToken);
+    if (!table) throw new ResourceNotFoundError("Table not found");
+    return { table };
+  }
+
+  async save({ table }: { table: Table }): Promise<void> {
+    const index = this.tables.findIndex((t) => t.token === table.token);
+    if (index === -1) throw new ResourceNotFoundError("Table not found");
+    this.tables[index] = table;
   }
 
   get tablesList() {
     return this.tables;
   }
 
-  async findUniqueByToken({
+  async addPlayer({
+    player,
     tableToken,
   }: {
-    tableToken: string;
-  }): Promise<{ table: Table }> {
-    const table = this.tables.find((table) => table.token === tableToken);
-
-    if (!table) throw new ResourceNotFoundError("Table not found");
-
-    return { table };
-  }
-
-  async update({
-    data,
-    tableToken,
-  }: {
-    data: Partial<ITableProps>;
-    tableToken: string;
-  }): Promise<{ table: Table }> {
-    const tableIndex = this.tables.findIndex(
-      (table) => table.token === tableToken
-    );
-
-    if (tableIndex === -1) throw new ResourceNotFoundError("Table not found");
-
-    const existingTableProps = this.tables[tableIndex];
-
-    const updatedProps: ITableProps = {
-      ...existingTableProps.getProps(),
-      ...data,
-    };
-
-    const updatedTable = new Table({
-      id: existingTableProps.id,
-      props: updatedProps,
-    });
-
-    this.tables[tableIndex] = updatedTable;
-
-    return { table: updatedTable };
+    player: Player;
+    tableToken: Token;
+  }): Promise<void> {
+    const { table } = await this.findUniqueByToken({ tableToken });
+    table.addPlayer({ player });
   }
 }

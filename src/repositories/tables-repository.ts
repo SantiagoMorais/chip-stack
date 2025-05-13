@@ -1,18 +1,20 @@
+import { Player } from "@/domain/entities/player";
 import { Table } from "@/domain/entities/table";
-import { ITableProps } from "@/core/interfaces/table-props";
+import { Token } from "@/domain/entities/value-objects/token";
 
 export interface TablesRepository {
   create({ table }: { table: Table }): Promise<{ table: Table }>;
   findUniqueByToken({
     tableToken,
   }: {
-    tableToken: string;
+    tableToken: Token;
   }): Promise<{ table: Table }>;
-  update({
-    data,
+  save({ table }: { table: Table }): Promise<void>;
+  addPlayer({
+    player,
     tableToken,
   }: {
-    data: Partial<ITableProps>;
-    tableToken: string;
-  }): Promise<{ table: Table }>;
+    player: Player;
+    tableToken: Token;
+  }): Promise<void>;
 }
