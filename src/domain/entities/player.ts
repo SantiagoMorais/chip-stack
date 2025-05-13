@@ -1,4 +1,6 @@
 import { Entity } from "@/core/entities/entity";
+import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { Optional } from "@/core/types/optional";
 
 import { IPlayerProps } from "../../core/interfaces/player-props";
 
@@ -36,5 +38,22 @@ export class Player extends Entity<IPlayerProps> {
   set isOwner(isTheTableOwner: boolean) {
     this.props.isOwner = isTheTableOwner;
     this.touch();
+  }
+
+  static create(
+    props: Optional<IPlayerProps, "chips" | "createdAt" | "id">,
+    id?: UniqueEntityId
+  ) {
+    const player = new Player(
+      {
+        ...props,
+        chips: 500,
+        createdAt: new Date(),
+        id: id ?? new UniqueEntityId(),
+      },
+      id
+    );
+
+    return player;
   }
 }
