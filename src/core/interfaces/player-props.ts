@@ -1,3 +1,5 @@
+import { Token } from "@/domain/entities/value-objects/token";
+
 import { Table } from "../../domain/entities/table";
 import { UniqueEntityId } from "../entities/unique-entity-id";
 
@@ -6,7 +8,7 @@ export interface IPlayerProps {
   name: string;
   isOwner: boolean;
   chips: number;
-  tableToken: string;
+  tableToken: Token;
   table: Table;
   createdAt: Date;
   updatedAt?: Date;
