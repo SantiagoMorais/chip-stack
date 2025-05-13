@@ -1,7 +1,10 @@
 import { Entity } from "@/core/entities/entity";
+import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { Optional } from "@/core/types/optional";
 
 import { ITableProps } from "../../core/interfaces/table-props";
 import { Player } from "./player";
+import { Token } from "./value-objects/token";
 
 export class Table extends Entity<ITableProps> {
   get tableName() {
@@ -33,22 +36,49 @@ export class Table extends Entity<ITableProps> {
   }
 
   set players(players: Player[] | undefined) {
-    this.players = players;
+    this.props.players = players;
     this.touch();
   }
 
   set isLocked(lock: boolean) {
-    this.isLocked = lock;
+    this.props.isLocked = lock;
     this.touch();
   }
 
-  set ownerId(id: string | undefined | null) {
-    this.ownerId = id;
+  set ownerId(id: UniqueEntityId | null) {
+    this.props.ownerId = id;
     this.touch();
   }
 
   set tableName(newName: string) {
-    this.tableName = newName;
+    this.props.tableName = newName;
+    this.touch();
+  }
+
+  static create(
+    props: Optional<
+      ITableProps,
+      "createdAt" | "token" | "updatedAt" | "ownerId" | "id"
+    >,
+    id?: UniqueEntityId
+  ) {
+    const table = new Table(
+      {
+        ...props,
+        createdAt: new Date(),
+        token: new Token(),
+        ownerId: null,
+        id: id ?? new UniqueEntityId(),
+      },
+      id
+    );
+
+    return table;
+  }
+
+  addPlayer({ player }: { player: Player }) {
+    if (!this.props.players) this.props.players = [];
+    this.props.players.push(player);
     this.touch();
   }
 }
