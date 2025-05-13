@@ -12,7 +12,7 @@ let sut: CreateTableUseCase;
 describe("CreateTableUseCase", () => {
   beforeEach(() => {
     tableRepository = new InMemoryTablesRepository();
-    playersRepository = new InMemoryPlayersRepository(tableRepository);
+    playersRepository = new InMemoryPlayersRepository();
     sut = new CreateTableUseCase(tableRepository, playersRepository);
   });
 
