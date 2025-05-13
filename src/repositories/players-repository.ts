@@ -1,11 +1,5 @@
 import { Player } from "@/domain/entities/player";
 
 export interface PlayersRepository {
-  create({
-    name,
-    tableToken,
-  }: {
-    name: string;
-    tableToken: string;
-  }): Promise<{ player: Player }>;
+  create({ player }: { player: Player }): Promise<{ player: Player }>;
 }
