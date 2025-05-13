@@ -15,6 +15,7 @@ export class Player {
       isOwner: props.isOwner ?? false,
       chips: props.chips ?? 500,
       table: props.table,
+      createdAt: props.createdAt ?? new Date(),
     };
   }
 
@@ -34,11 +35,26 @@ export class Player {
     return this.props.chips!;
   }
 
-  set chips(value: number) {
-    this.props.chips = value;
-  }
-
   get isOwner() {
     return this.props.isOwner;
+  }
+
+  private touch() {
+    this.props.updatedAt = new Date();
+  }
+
+  set chips(value: number) {
+    this.props.chips = value;
+    this.touch();
+  }
+
+  set name(newName: string) {
+    this.props.name = newName;
+    this.touch();
+  }
+
+  set isOwner(isTheTableOwner: boolean) {
+    this.props.isOwner = isTheTableOwner;
+    this.touch();
   }
 }
